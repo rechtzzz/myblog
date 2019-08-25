@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ name }}'s blog</title>
+</head>
+<body>
+{#    <h1>welcome {{ name }}'s blog</h1>#}
+
+    <a href="{{ url_for('user_register') }}">注册</a>
+
+
+
+    <form  method="post">
+
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.username.label }}<br>
+            {{ form.username(size=20) }}
+            {% for error in form.username.errors %}
+                <span class="error">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.password.label }}<br>
+            {{ form.password(size=16) }}
+            {% for error in form.password.errors %}
+                <span class="error">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
+        <p>{{ form.submit() }}</p>
+    </form>
+    {% with login_mes = get_flashed_messages() %}
+        {% if login_mes %}
+        <ul>
+            {% for mes in login_mes %}
+                <li>{{ mes }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    {% endwith %}
+
+
+</body>
+</html>

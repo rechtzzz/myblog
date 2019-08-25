@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/css/bootstrap.min.css">
+    <style>
+        body{
+            padding:0;
+            margin:0;
+        }
+        #bg{width:100%;height:100%;position:absolute;z-index:-1;opacity: 0.8}
+        #login{position:absolute;left:22.5%;top:40%;margin-left:-150px;margin-top:-100px; }
+    </style>
+</head>
+<body>
+<div class="container" id="login">
+
+    <div class="row">
+        <div class="text-center"><h3> Please Login</h3></div>
+    </div>
+    <div class="row table-bordered">
+        <div class="col-md-6">
+            <h3 class="text-center text-capitalize"> my blog </h3>
+            <p>记录点滴，记录成长，Adobe LiveCycle Document Security Server提供了在PDF表单和文档中支持的文档加密和数字签名服务。Adobe LiveCycle Document
+                Security Server provides services for document encryption and digital signature support on PDF forms and
+                documents</p>
+            <blockquote class="blockquote-reverse">
+                <p>stay hungry stay foolish<cite title="lincoln">————Ahrabam Lincoln</cite></p>
+            </blockquote>
+        </div>
+        <div class="col-md-6">
+            <br>
+            <form role="form" class=" form-horizontal" method="post"  action="{{ url_for('login') }}">
+                    {{ form.hidden_tag() }}
+                <div class="form-group has-feedback">
+                    <label for="Email" class="control-label col-md-2">用户名：</label>
+                    <div class="col-md-10">
+                        <div class="input-group">
+                            <span class="input-group-addon" style="BACKGROUND-COLOR: transparent;">@</span>
+{#                            <input  name="username" class="form-control" id="Email" placeholder="Email" style="BACKGROUND-COLOR: transparent;"#}
+{#                                   aria-describedby="EmailHelp" autofocus required>#}
+                            <p  class="form-control" id="Email" placeholder="Email" style="BACKGROUND-COLOR: transparent;"
+                                  aria-describedby="EmailHelp" autofocus required> {{ form.username(size=30) }}</p>
+                            {% for error in form.username.errors %}
+                            <span class="error">[{{ error }}]</span>
+                            {% endfor %}
+                        </div>
+                        <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+                        <span class="help-block sr-only" id="EmailHelp">Correct Email</span>
+                    </div>
+                </div>
+                <div class="form-group has-feedback">
+                    <label for="password4" class="control-label col-md-2">Password：</label>
+                    <div class="col-md-10">
+                        <div class="input-group">
+                            <span class="input-group-addon" style="BACKGROUND-COLOR: transparent;">&nbsp;=&nbsp;</span>
+{#                            <input name="password" type="password" class="form-control" id="password4"#}
+{#                                   style="BACKGROUND-COLOR: transparent;"  placeholder="Password"  >#}
+                            <p class="form-control" id="password4" style="BACKGROUND-COLOR: transparent;" placeholder="Password">
+                                {{ form.password(size=30) }}</p>
+                            {% for error in form.password.errors %}
+                                <span class="error">[{{ error }}]</span>
+                            {% endfor %}
+                                    {% with login_mes = get_flashed_messages() %}
+                                    {% if login_mes %}
+                                    <ul>
+                                    {% for mes in login_mes %}
+                                        <li>{{ mes }}</li>
+                                    {% endfor %}
+                                        </ul>
+                                    {% endif %}
+                                    {% endwith %}
+                        </div>
+                        <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <div class="col-md-offset-2">
+                    <label class="radio-inline">
+                        <input type="radio" name="role" value="student" checked> 用户
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="role" value="admin" disabled> 管理员
+                    </label>
+                    <br>
+                    <br>
+                    <div class="form-inline">
+                        <p class="btn btn-primary" style="BACKGROUND-COLOR: transparent;" >{{ form.submit() }} </p>
+{#                        <button  class="btn btn-primary" style="BACKGROUND-COLOR: transparent;" 　>登录</button>#}
+{#                        <button  class="btn btn-primary" style="BACKGROUND-COLOR: transparent;" >注册</button>#}
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<img id="bg" src="static/image/1.jpg" alt="..." class="img-rounded img-responsive">
+</body>
+</html>
